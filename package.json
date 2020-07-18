@@ -1,9 +1,9 @@
 {
   "name": "@thzero/library_cli",
-  "version": "0.6.14",
+  "version": "0.6.15",
   "version_major": 0,
   "version_minor": 6,
-  "version_patch": 14,
+  "version_patch": 15,
   "version_date": "07/18/2020",
   "description": "A cli tool for the opinonated libraries.",
   "author": "thZero",
@@ -19,9 +19,12 @@
   "engines": {
     "node": ">=12.18"
   },
+  "bin": {
+    "library-cli": "./index.js"
+  },
   "scripts": {
-    "cli-id": "node -r esm ./cli.js --generate",
-    "cli-update": "node -r esm ./cli.js --updateversion --pi",
+    "cli-id": "node -r esm ./index.js --generate",
+    "cli-update": "node -r esm ./index.js --updateversion --pi",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

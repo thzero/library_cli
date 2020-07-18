@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import dayjs from 'dayjs';
 import minimist from 'minimist';
 import readline from 'readline';
