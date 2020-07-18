@@ -20,7 +20,7 @@ The tool includes a command line interface application that performs a couple of
 ### Usage
 
 ```
-cli <options>
+library-cli <options>
 
 --generate :: generates a UUIDs, either in short (default) or long format
   --number, --n :: the number of ids to generate
@@ -32,15 +32,14 @@ cli <options>
   --patch, --p :: sets the patch, defaults to the current value or 0
   --patch_inc, --pi :: increments the patch by one
   --date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date
-  --package, --pa :: sets the path of the package.json file
 ```
 
 ### Help
 
 ```
-node -r esm cli.js --help
+./node_modules/.bin/library-cli --help
 // from within an application
-node -r esm ./node_modules/@thzero/library/cli.js --help
+./node_modules/.bin/library-cli --help
 ```
 
 ### Version
@@ -48,7 +47,7 @@ node -r esm ./node_modules/@thzero/library/cli.js --help
 ```
 node -r esm cli.js --version
 // from within an application
-node -r esm ./node_modules/@thzero/library/cli.js --version
+./node_modules/.bin/library-cli --version
 ```
 
 ### Generate UUID examples
@@ -56,17 +55,19 @@ node -r esm ./node_modules/@thzero/library/cli.js --version
 #### Single UUID
 
 ```
-node -r esm cli.js --generate
-// from within an application
-node -r esm ./node_modules/@thzero/library/cli.js --generate
+// installed globally
+library-cli --generate
+// installed locally
+./node_modules/.bin/library-cli --generate
 ```
 
 #### Multiple UUIDs
 
 ```
-node -r esm cli.js --generate --n 5
-// from within an application
-node -r esm ./node_modules/@thzero/library/cli.js --generate --n 5
+// installed globally
+library-cli --generate --n 5
+// installed locally
+./node_modules/.bin/library-cli --generate --n 5
 ```
 
 ### Update Version examples
@@ -74,15 +75,17 @@ node -r esm ./node_modules/@thzero/library/cli.js --generate --n 5
 #### Increment patch
 
 ```
-node -r esm cli.js --updateversion --pi
-// from within an application
-node -r esm ./node_modules/@thzero/library/cli.js --updateversion --pi --package \"../../../package.json\"
+// installed globally
+library-cli --updateversion --pi
+// installed locally
+./node_modules/.bin/library-cli --updateversion --pi"
 ```
 
 #### Update date
 
 ```
-node -r esm cli.js --updateversion --d '7/15/2020'
-// from within an application
-node -r esm ./node_modules/@thzero/library/cli.js --updateversion --d '7/15/2020' --package \"../../../package.json\"
+// installed globally
+library-cli--updateversion --d '7/15/2020'
+// installed locally
+./node_modules/.bin/library-cli --updateversion --d '7/15/2020'"
 ```

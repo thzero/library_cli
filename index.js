@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-import dayjs from 'dayjs';
-import minimist from 'minimist';
-import readline from 'readline';
-import { v4 as uuidv4 } from 'uuid';
-import shortUUID from 'short-uuid';
+const dayjs = require('dayjs');
+const minimist = require('minimist');
+const readline = require('readline');
+const shortUUID = require('short-uuid');
 
 const uuidTranslator = shortUUID();
 
@@ -13,11 +12,11 @@ const { version } = require('./package.json');
 const appVersion = version;
 
 function generateLongId() {
-	return uuidv4();
+	return shortUUID.uuid();
 }
 
 function generateShortId() {
-	return uuidTranslator.fromUUID(uuidv4());
+	return uuidTranslator.new();
 }
 
 function question(q, acceptable) {
@@ -55,8 +54,7 @@ function question(q, acceptable) {
 		--minor, --mi :: sets the minor version, defaults to the current value or 0
 		--patch, --p :: sets the patch, defaults to the current value or 0
 		--patch_inc, --pi :: increments the patch by one
-		--date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date
-		--package, --pa :: sets the path of the package.json file`,
+		--date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date`,
 	};
 
 	const args = minimist(process.argv.slice(2));
@@ -93,12 +91,13 @@ function question(q, acceptable) {
 			break;
 
 		case 'updateversion':
-			let packagePath = './package.json';
-			if (args.package || args.pa) {
-				packagePath = args.package || args.pa;
-				if (!packagePath)
-					console.error('Invalid package path.');
-			}
+			let packagePath = `${process.cwd()}/package.json`;
+			// if (args.package || args.pa) {
+			// 	packagePath = args.package || args.pa;
+			// 	if (!packagePath)
+			// 		console.error('Invalid package path.');
+			// }
+			// console.log(packagePath);
 
 			const packageJson = require(packagePath);
 			// console.log(packageJson);
@@ -151,7 +150,7 @@ function question(q, acceptable) {
 			const output = JSON.stringify(packageJson, null, 2);
 			// console.log(output);
 			const fs = require('fs');
-			fs.writeFile('./package.json', output, function (err) {
+			fs.writeFile(packagePath, output, function (err) {
 				if (err)
 					return console.error(err);
 				console.log(`Updated version with '${major}.${minor}.${patch}', '${date}'.`);
