@@ -10,7 +10,6 @@ A cli tool for the opinonated @thzero/library packages.
 
 [![NPM](https://nodei.co/npm/@thzero/library_cli.png?compact=true)](https://npmjs.org/package/@thzero/library_cli)
 
-
 ## CLI
 
 The tool includes a command line interface application that performs a couple of tasks
