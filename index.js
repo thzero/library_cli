@@ -103,8 +103,8 @@ function question(q, acceptable) {
 			const packageJson = require(packagePath);
 			// console.log(packageJson);
 
-			const silent = args.silent || false;
-			console.log(`silent: ${silent}`);
+			const silent = (args.silent) || (args.s) || false;
+			// console.log(`silent: ${silent}`);
 
 			let major = Number(packageJson.version_major || 0);
 			// console.log(`major: ${major}`);
