@@ -51,6 +51,16 @@ node -r esm cli.js --version
 ./node_modules/.bin/library-cli --version
 ```
 
+The version will utilize the following properties in the package.json file.
+
+```
+  "version": "<major>.<minor>.<patch>",
+  "version_major": <major>,
+  "version_minor": <minor>,
+  "version_patch": <patch; to increment must be an integer value>,
+  "version_date": "<date in MM/DD/YYY>",
+```
+
 ### Generate UUID examples
 
 #### Single UUID
