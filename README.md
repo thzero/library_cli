@@ -32,6 +32,7 @@ library-cli <options>
   --patch, --p :: sets the patch, defaults to the current value or 0
   --patch_inc, --pi :: increments the patch by one
   --date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date
+  --silent, --s :: does not prompt
 ```
 
 ### Help
@@ -48,6 +49,16 @@ library-cli <options>
 node -r esm cli.js --version
 // from within an application
 ./node_modules/.bin/library-cli --version
+```
+
+The version will utilize the following properties in the package.json file.
+
+```
+  "version": "<major>.<minor>.<patch>",
+  "version_major": <major>,
+  "version_minor": <minor>,
+  "version_patch": <patch; to increment must be an integer value>,
+  "version_date": "<date in MM/DD/YYY>",
 ```
 
 ### Generate UUID examples
