@@ -54,7 +54,8 @@ function question(q, acceptable) {
 		--minor, --mi :: sets the minor version, defaults to the current value or 0
 		--patch, --p :: sets the patch, defaults to the current value or 0
 		--patch_inc, --pi :: increments the patch by one
-		--date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date`,
+		--date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date
+		--silent, --s :: does not prompt`,
 	};
 
 	const args = minimist(process.argv.slice(2));
@@ -102,6 +103,9 @@ function question(q, acceptable) {
 			const packageJson = require(packagePath);
 			// console.log(packageJson);
 
+			const silent = args.silent || false;
+			console.log(`silent: ${silent}`);
+
 			let major = Number(packageJson.version_major || 0);
 			// console.log(`major: ${major}`);
 			if ((args.major !== null && args.major !== undefined) || (args.ma !== null && args.ma !== undefined))
@@ -134,10 +138,12 @@ function question(q, acceptable) {
 
 			const version = `${major}.${minor}.${patch}`;
 
-			const value = await question(`Updating with version '${version}' and date '${date}'.\nDo you want to proceed? [y/n] `, 'y');
-			if (!value) {
-				console.log('No updates applied.');
-				return;
+			if (!silent) {
+				const value = await question(`Updating with version '${version}' and date '${date}'.\nDo you want to proceed? [y/n] `, 'y');
+				if (!value) {
+					console.log('No updates applied.');
+					return;
+				}
 			}
 
 			packageJson.version = version;

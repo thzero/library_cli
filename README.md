@@ -32,6 +32,7 @@ library-cli <options>
   --patch, --p :: sets the patch, defaults to the current value or 0
   --patch_inc, --pi :: increments the patch by one
   --date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date
+  --silent, --s :: does not prompt
 ```
 
 ### Help
