@@ -1,10 +1,10 @@
 {
   "name": "@thzero/library_cli",
-  "version": "0.7.2",
+  "version": "0.7.4",
   "version_major": 0,
   "version_minor": 7,
-  "version_patch": 2,
-  "version_date": "07/31/2020",
+  "version_patch": 4,
+  "version_date": "08/11/2020",
   "description": "A cli tool for the opinonated libraries.",
   "author": "thZero",
   "license": "MIT",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/thzero/library_cli#readme",
   "engines": {
-    "node": ">=12.18"
+    "node": ">=12.8.3"
   },
   "bin": {
     "library-cli": "./index.js"
@@ -28,7 +28,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "dayjs": "^1.8.31",
+    "dayjs": "^1.8.33",
     "dayjs-plugin-utc": "^0.1.2",
     "esm": "^3.2.25",
     "minimist": "^1.2.5",
