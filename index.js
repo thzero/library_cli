@@ -4,6 +4,8 @@ const minimist = require('minimist');
 const readline = require('readline');
 const shortUUID = require('short-uuid');
 
+const { generate, updateVersion } = require ('./api');
+
 const uuidTranslator = shortUUID();
 
 // https://timber.io/blog/creating-a-real-world-cli-app-with-node/
@@ -11,34 +13,13 @@ const uuidTranslator = shortUUID();
 const { version } = require('./package.json');
 const appVersion = version;
 
-function generateLongId() {
-	return shortUUID.uuid();
-}
+// function generateLongId() {
+// 	return shortUUID.uuid();
+// }
 
-function generateShortId() {
-	return uuidTranslator.new();
-}
-
-function question(q, acceptable) {
-	const rl = readline.createInterface( {
-		input: process.stdin,
-		output: process.stdout
-	} );
-
-	rl.setPrompt(q);
-	rl.prompt();
-
-	return new Promise(( resolve , reject) => {
-		let response;
-		rl.on('line', (userInput) => {
-			response = userInput;
-			rl.close();
-		});
-		rl.on('close', () => {
-			resolve(response === acceptable);
-		});
-	});
-}
+// function generateShortId() {
+// 	return uuidTranslator.new();
+// }
 
 (async () => {
 	const menus = {
@@ -81,86 +62,58 @@ function question(q, acceptable) {
 
 	switch (cmd) {
 		case 'generate':
-			let result
-			for (let i = 0; i < number; i++) {
-				if (!short)
-					result = generateLongId();
-				else
-					result = generateShortId();
-				console.log(result);
-			}
+			console.log(generate(number, short).join('\n'));
 			break;
 
 		case 'updateversion':
-			let packagePath = `${process.cwd()}/package.json`;
-			// if (args.package || args.pa) {
-			// 	packagePath = args.package || args.pa;
-			// 	if (!packagePath)
-			// 		console.error('Invalid package path.');
-			// }
-			// console.log(packagePath);
+			const apiArgs = {};
 
-			const packageJson = require(packagePath);
-			// console.log(packageJson);
-
-			const silent = (args.silent) || (args.s) || false;
+			apiArgs.silent = (args.silent) || (args.s) || false;
 			// console.log(`silent: ${silent}`);
 
-			let major = Number(packageJson.version_major || 0);
+			// apiArgs.major = Number(packageJson.version_major || 0);
 			// console.log(`major: ${major}`);
 			if ((args.major !== null && args.major !== undefined) || (args.ma !== null && args.ma !== undefined))
-				major = args.new || args.ma;
+				apiArgs.major = args.new || args.ma;
 			// console.log(`major.args: ${major}`);
 
-			let minor = Number(packageJson.version_minor || 0);
+			// apiArgs.minor = Number(packageJson.version_minor || 0);
 			// console.log(`minor: ${minor}`);
 			if ((args.minor !== null && args.minor !== undefined) || (args.mi !== null && args.mi !== undefined))
-				minor = args.minor || args.mi;
+				apiArgs.minor = args.minor || args.mi;
 			// console.log(`minor.args: ${minor}`);
 
-			let patch = Number(packageJson.version_patch || 0);
-
+			// apiArgs.patch = Number(packageJson.version_patch || 0);
 			// console.log(`patch: ${patch}`);
 			if ((args.patch !== null && args.patch !== undefined) || (args.p !== null && args.p !== undefined))
-				patch = args.patch || args.p;
+				apiArgs.patch = args.patch || args.p;
 			// console.log(`patch.args: ${patch}`);
 
 			// console.log(`patch: ${patch}`);
 			if (args.patch_inc || args.pi)
-				patch = patch + 1;
+			// 	apiArgs.patch = patch + 1;
+				apiArgs.pi = true;
 			// console.log(`patch.args: ${patch}`);
 
-			let date = null;
+			apiArgs.date = null;
 			if (args.date || args.d)
-				date = args.date || args.d;
-			if (!date)
-				date = dayjs().format('MM/DD/YYYY');
+				apiArgs.date = args.date || args.d;
+			// if (!date)
+			// 	apiArgs.date = dayjs().format('MM/DD/YYYY');
 
-			const version = `${major}.${minor}.${patch}`;
+			// const version = `${major}.${minor}.${patch}`;
 
-			if (!silent) {
-				const value = await question(`Updating with version '${version}' and date '${date}'.\nDo you want to proceed? [y/n] `, 'y');
-				if (!value) {
-					console.log('No updates applied.');
-					return;
-				}
-			}
+			// if (!silent) {
+			// 	const value = await question(`Updating with version '${version}' and date '${date}'.\nDo you want to proceed? [y/n] `, 'y');
+			// 	if (!value) {
+			// 		console.log('No updates applied.');
+			// 		return;
+			// 	}
+			// }
 
-			packageJson.version = version;
-			packageJson.version_major = major;
-			packageJson.version_minor = minor;
-			packageJson.version_patch = patch;
-			packageJson.version_date = date;
-			// console.log(packageJson);
-
-			const output = JSON.stringify(packageJson, null, 2);
-			// console.log(output);
-			const fs = require('fs');
-			fs.writeFile(packagePath, output, function (err) {
-				if (err)
-					return console.error(err);
-				console.log(`Updated version with '${major}.${minor}.${patch}', '${date}'.`);
-			});
+			const results = await updateVersion(apiArgs);
+			if (results.message || results.error)
+				console.log(results.success ? results.message ? results.message : '' : results.error ? results.error : 'failed');
 
 			break;
 
