@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const dayjs = require('dayjs');
-const minimist = require('minimist');
 const readline = require('readline');
 const shortUUID = require('short-uuid');
 
