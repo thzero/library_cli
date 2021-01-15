@@ -31,11 +31,11 @@ library-cli <options>
   --long, --l :: generates a long uuid
 
 --updateversion :: updates the version
-  --major, --ma :: sets the major version, defaults to the current value or 0
-  --minor, --mi :: sets the minor version, defaults to the current value or 0
-  --patch, --p :: sets the patch, defaults to the current value or 0
+  --major, --ma <major> :: sets the major version, defaults to the current value or 0
+  --minor, --mi <minor> :: sets the minor version, defaults to the current value or 0
+  --patch, --p <patch> :: sets the patch, defaults to the current value or 0
   --patch_inc, --pi :: increments the patch by one
-  --date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date
+  --date, --d <date> :: sets the version date in MM/DD/YYYY format, defaults to current date
   --silent, --s :: does not prompt
 ```
 
