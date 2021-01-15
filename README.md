@@ -22,6 +22,10 @@ The tool includes a command line interface application that performs a couple of
 ```
 library-cli <options>
 
+--help, --h :: help
+
+--version, --v :: cli version
+
 --generate :: generates a UUIDs, either in short (default) or long format
   --number, --n :: the number of ids to generate
   --long, --l :: generates a long uuid

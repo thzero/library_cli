@@ -23,7 +23,7 @@ const appVersion = version;
 (async () => {
 	const menus = {
 		default: `
-	cli <options>
+library-cli <options>
 
 	--help, --h :: help
 
@@ -43,7 +43,7 @@ const appVersion = version;
 	};
 
 	const version = `
-	cli version '${appVersion}'`;
+library-cli version '${appVersion}'`;
 
 	const args = minimist(process.argv.slice(2));
 
