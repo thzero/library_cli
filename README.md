@@ -42,7 +42,7 @@ library-cli <options>
 ### Help
 
 ```
-./node_modules/.bin/library-cli --help
+node -r esm cli.js --help
 // from within an application
 ./node_modules/.bin/library-cli --help
 ```
