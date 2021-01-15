@@ -17,7 +17,7 @@ The tool includes a command line interface application that performs a couple of
 * Generate short UUIDs
 * Update version information in a package.json
 
-### Usage
+#### Usage
 
 ```
 library-cli <options>
@@ -39,7 +39,7 @@ library-cli <options>
   --silent, --s :: does not prompt
 ```
 
-### Help
+##### Help
 
 ```
 node -r esm index.js --help
@@ -47,7 +47,7 @@ node -r esm index.js --help
 ./node_modules/.bin/library-cli --help
 ```
 
-### Version
+##### Version
 
 ```
 node -r esm index.js --version
@@ -65,9 +65,9 @@ The version will utilize the following properties in the package.json file.
   "version_date": "<date in MM/DD/YYY>",
 ```
 
-### Generate UUID examples
+##### Generate UUID examples
 
-#### Single UUID
+###### Single UUID
 
 ```
 // installed globally
@@ -76,7 +76,7 @@ library-cli --generate
 ./node_modules/.bin/library-cli --generate
 ```
 
-#### Multiple UUIDs
+###### Multiple UUIDs
 
 ```
 // installed globally
@@ -85,9 +85,9 @@ library-cli --generate --n 5
 ./node_modules/.bin/library-cli --generate --n 5
 ```
 
-### Update Version examples
+##### Update Version examples
 
-#### Increment patch
+###### Increment patch
 
 ```
 // installed globally
@@ -96,7 +96,7 @@ library-cli --updateversion --pi
 ./node_modules/.bin/library-cli --updateversion --pi"
 ```
 
-#### Update date
+###### Update date
 
 ```
 // installed globally
