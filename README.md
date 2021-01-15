@@ -42,7 +42,7 @@ library-cli <options>
 ### Help
 
 ```
-node -r esm cli.js --help
+node -r esm index.js --help
 // from within an application
 ./node_modules/.bin/library-cli --help
 ```
@@ -50,7 +50,7 @@ node -r esm cli.js --help
 ### Version
 
 ```
-node -r esm cli.js --version
+node -r esm index.js --version
 // from within an application
 ./node_modules/.bin/library-cli --version
 ```
