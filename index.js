@@ -1,24 +1,13 @@
 #!/usr/bin/env node
 const minimist = require('minimist');
 const readline = require('readline');
-const shortUUID = require('short-uuid');
 
 const { generate, updateVersion } = require ('./api');
-
-const uuidTranslator = shortUUID();
 
 // https://timber.io/blog/creating-a-real-world-cli-app-with-node/
 
 const { version } = require('./package.json');
 const appVersion = version;
-
-// function generateLongId() {
-// 	return shortUUID.uuid();
-// }
-
-// function generateShortId() {
-// 	return uuidTranslator.new();
-// }
 
 (async () => {
 	const menus = {
