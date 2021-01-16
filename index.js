@@ -4,8 +4,6 @@ const readline = require('readline');
 
 const { generate, updateVersion } = require ('./api');
 
-// https://timber.io/blog/creating-a-real-world-cli-app-with-node/
-
 const { version } = require('./package.json');
 const appVersion = version;
 
