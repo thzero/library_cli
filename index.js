@@ -1,42 +1,38 @@
 #!/usr/bin/env node
 const minimist = require('minimist');
 const readline = require('readline');
-const shortUUID = require('short-uuid');
 
 const { generate, updateVersion } = require ('./api');
-
-const uuidTranslator = shortUUID();
 
 // https://timber.io/blog/creating-a-real-world-cli-app-with-node/
 
 const { version } = require('./package.json');
 const appVersion = version;
 
-// function generateLongId() {
-// 	return shortUUID.uuid();
-// }
-
-// function generateShortId() {
-// 	return uuidTranslator.new();
-// }
-
 (async () => {
 	const menus = {
 		default: `
-	cli <options>
+library-cli <options>
 
-	--generate :: generates a UUIDs, either in short (default) or long format
-		--number, --n :: the number of ids to generate
+	--help, --h :: help
+
+	--version, --v :: cli version
+
+	--generate :: generates a UUIDnpm s, either in short (default) or long format
+		--number, --n <value> :: the number of ids to generate
 		--long, --l :: generates a long uuid
 
 	--updateversion :: updates the version
-		--major, --ma :: sets the major version, defaults to the current value or 0
-		--minor, --mi :: sets the minor version, defaults to the current value or 0
-		--patch, --p :: sets the patch, defaults to the current value or 0
+		--major, --ma <major> :: sets the major version, defaults to the current value or 0
+		--minor, --mi <minor> :: sets the minor version, defaults to the current value or 0
+		--patch, --p <patch> :: sets the patch, defaults to the current value or 0
 		--patch_inc, --pi :: increments the patch by one
-		--date, --d :: sets the version date in MM/DD/YYYY format, defaults to current date
+		--date, --d <date> :: sets the version date in MM/DD/YYYY format, defaults to current date
 		--silent, --s :: does not prompt`,
 	};
+
+	const version = `
+library-cli version '${appVersion}'`;
 
 	const args = minimist(process.argv.slice(2));
 
@@ -73,7 +69,7 @@ const appVersion = version;
 			// apiArgs.major = Number(packageJson.version_major || 0);
 			// console.log(`major: ${major}`);
 			if ((args.major !== null && args.major !== undefined) || (args.ma !== null && args.ma !== undefined))
-				apiArgs.major = args.new || args.ma;
+				apiArgs.major = args.major || args.ma;
 			// console.log(`major.args: ${major}`);
 
 			// apiArgs.minor = Number(packageJson.version_minor || 0);
@@ -118,15 +114,15 @@ const appVersion = version;
 
 		case 'help':
 			// require('./cmds/help')(args)
-			console.log(menus.default)
+			console.log(menus.default);
 			break;
 
 		case 'version':
-			console.log(`v${appVersion}`)
+			console.log(version);
 			break;
 
 		default:
-			console.error(`"${cmd}" is not a valid command!`)
+			console.error(`"${cmd}" is not a valid command!`);
 			break;
 	}
 })();
