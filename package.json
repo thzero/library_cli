@@ -1,9 +1,9 @@
 {
   "name": "@thzero/library_cli",
-  "version": "0.13.5",
+  "version": "0.13.6",
   "version_major": 0,
   "version_minor": 13,
-  "version_patch": 5,
+  "version_patch": 6,
   "version_date": "02/06/2021",
   "description": "A cli tool for the opinonated libraries.",
   "author": "thZero",
