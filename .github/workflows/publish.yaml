@@ -108,6 +108,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Repository Dispatch - Common
+        if: github.event.inputs.library == null || github.event.inputs.library == ''
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
