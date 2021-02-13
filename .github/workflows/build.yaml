@@ -2,7 +2,7 @@ name: Build CI
 
 on:
     repository_dispatch:
-      types: [ build_cli ]
+     # types: [ npm, version ]
 
 jobs:
   build:
