@@ -79,7 +79,7 @@ jobs:
       run: |
         echo ${{ steps.git-diff-changes.outputs.diff_check_length }}- name: Git Commit NPM
     - name: Git Commit NPM
-      if: github.event.client_payload.action == 'npm' && steps.git-changes.outputs.changed == true
+      if: github.event.client_payload.action == 'npm' && (steps.git-changes.outputs.changed == true || steps.git-diff-changes.outputs.diff_check_length > 0)
       run: |
         git config --global user.name '${{ github.repository_owner }}'
         git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
