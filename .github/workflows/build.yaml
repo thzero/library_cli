@@ -27,7 +27,6 @@ jobs:
         ref: dev
         fetch-depth: 0
     - name: Package Output
-    - name: Package Output
       run: |
         cat package.json
     - name: Initialize Node.js ${{ matrix.node-version }}
