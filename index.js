@@ -2,7 +2,7 @@
 const minimist = require('minimist');
 const readline = require('readline');
 
-const { generate, updateVersion } = require ('./api');
+const { generateId, updateVersion } = require ('./api');
 
 const { version } = require('./package.json');
 const appVersion = version;
@@ -18,7 +18,10 @@ library-cli <options>
 
 	--generate :: generates a UUIDnpm s, either in short (default) or long format
 		--number, --n <value> :: the number of ids to generate
-		--long, --l :: generates a long uuid
+		--long :: generates a long uuid
+		--nano :: generates a nanoid
+		--length, --l :: length of a nanoid
+		--alphabet, --a :: alphabet for a nanoid
 
 	--updateversion :: updates the version
 		--major, --ma <major> :: sets the major version, defaults to the current value or 0
@@ -49,13 +52,21 @@ library-cli version '${appVersion}'`;
 	if (args.number || args.n)
 		number = args.number || args.n;
 
-	let short = true;
-	if (args.long || args.l)
-		short = false;
+	let type = 'short';
+	if (args.long )
+		type = 'long';
+	if (args.nano)
+		type = 'nano';
+	let length = null;
+	if (args.length || args.l)
+		length = args.length || args.l;
+	let alphabet = null;
+	if (args.alphabet || args.a)
+		alphabet = args.alphabet || args.a;
 
 	switch (cmd) {
 		case 'generate':
-			console.log(generate(number, short).join('\n'));
+			console.log(generateId(number, type, length, alphabet).join('\n'));
 			break;
 
 		case 'updateversion':

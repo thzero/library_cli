@@ -1,11 +1,33 @@
 #!/usr/bin/env node
 const dayjs = require('dayjs');
+const { nanoid, customAlphabet } = require('nanoid');
 const readline = require('readline');
 const shortUUID = require('short-uuid');
 
 const uuidTranslator = shortUUID();
 
 // https://timber.io/blog/creating-a-real-world-cli-app-with-node/
+
+function generateId(number, type, length, alphabet) {
+	let results = [];
+	for (let i = 0; i < number; i++) {
+		if ('nano' === type)
+			results.push(generateNanoId(length, alphabet));
+		else if ('short' === type)
+				results.push(generateLongId());
+		else
+			results.push(generateShortId());
+	}
+	return results;
+}
+
+function generateNanoId(length, alphabet) {
+	if (length && alphabet)
+		return customAlphabet(alphabet, id);
+	if (length)
+		return nanoid(length);
+	return nanoid();
+}
 
 function generateLongId() {
 	return shortUUID.uuid();
@@ -34,17 +56,6 @@ function question(q, acceptable) {
 			resolve(response === acceptable);
 		});
 	});
-}
-
-function generate(number, short) {
-	let results = [];
-	for (let i = 0; i < number; i++) {
-		if (!short)
-			results.push(generateLongId());
-		else
-			results.push(generateShortId());
-	}
-	return results;
 }
 
 async function updateVersion(args) {
@@ -104,6 +115,6 @@ async function updateVersion(args) {
 }
 
 module.exports = {
-	generate,
+	generateId,
 	updateVersion
 }
