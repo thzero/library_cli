@@ -89,10 +89,8 @@ async function updateVersion(args) {
 
 	if (!args.silent) {
 		const value = await question(`Updating with version '${version}' and date '${args.date}'.\nDo you want to proceed? [y/n] `, 'y');
-		if (!value) {
-			console.log('No updates applied.');
-			return;
-		}
+		if (!value)
+			return { success: true, message: 'No updates applied.' };
 	}
 
 	packageJson.version = version;
