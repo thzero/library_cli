@@ -1,4 +1,2 @@
-call npm run cli-update -- --silent
-call git add .
-call git commit -m %1
-call git push
+call npm run cli-update-w -- --silent
+call push %1
