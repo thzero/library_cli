@@ -27,3 +27,5 @@ firebase-debug.log*
 /config/development.json
 /config/productionManual.json
 /config/serviceAccountKey.json
+
+.npmrc
