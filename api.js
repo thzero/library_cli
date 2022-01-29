@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
 const dayjs = require('dayjs');
 const { nanoid, customAlphabet } = require('nanoid');
 const readline = require('readline');
@@ -61,7 +63,9 @@ function question(q, acceptable) {
 async function updateVersion(args) {
 	args = args ? args : {};
 
-	const packagePath = `${process.cwd()}/package.json`;
+	let packagePath = !_isEmpty(args.packagePath) ? args.packagePath : process.cwd();
+	if (!packagePath.includes('package.json'))
+		packagePath = path.join(packagePath, 'package.json');
 	const packageJson = require(packagePath);
 	// console.log(packageJson);
 
@@ -102,7 +106,6 @@ async function updateVersion(args) {
 
 	const output = JSON.stringify(packageJson, null, 2);
 	// console.log(output);
-	const fs = require('fs');
 	try {
 		fs.promises.writeFile(packagePath, output);
 	}
@@ -110,6 +113,19 @@ async function updateVersion(args) {
 		return { success: false, error: err };
 	}
 	return { success: true, message: `Updated version with '${args.major}.${args.minor}.${args.patch}', '${args.date}'.` };
+}
+
+function _isEmpty(value) {
+	if (value === null || value === undefined)
+		return true;
+
+	if (!(typeof value === 'string'))
+		return true;
+
+	if (value.length === 0)
+		return true;
+	
+	return false;
 }
 
 module.exports = {
