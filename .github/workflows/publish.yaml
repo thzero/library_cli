@@ -78,9 +78,6 @@ jobs:
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.pull-request.outputs.pr_number }}
-    - name: Node Dependencies
-      run: |
-        npm ci
     - run: npm publish --access public
       if: steps.git-changes.outputs.changed == 1 && success()
       env:
