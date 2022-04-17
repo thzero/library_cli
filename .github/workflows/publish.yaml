@@ -31,7 +31,7 @@ jobs:
         ref: dev
     - name: Node Dependencies
       run: |
-        npm install --no-package-lock --production
+        npm install --no-package-lock
     - name: Update Package Version
       run: |
         cat package.json
@@ -78,6 +78,9 @@ jobs:
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.pull-request.outputs.pr_number }}
+    - name: Node Dependencies
+      run: |
+        npm ci
     - run: npm publish --access public
       if: steps.git-changes.outputs.changed == 1 && success()
       env:
