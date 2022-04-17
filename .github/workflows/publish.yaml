@@ -31,7 +31,7 @@ jobs:
         ref: dev
     - name: Node Dependencies
       run: |
-        npm install --no-package-lock
+        npm install --no-package-lock --production
     - name: Update Package Version
       run: |
         cat package.json
