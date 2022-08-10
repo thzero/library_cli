@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-const minimist = require('minimist');
-const readline = require('readline');
+import minimist from 'minimist';
 
-const { generateId, updateVersion } = require ('./api');
+import { generateId, updateVersion } from './api';
 
 const { version } = require('./package.json');
 const appVersion = version;
