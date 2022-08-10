@@ -1,16 +1,17 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-const dayjs = require('dayjs');
-const { nanoid, customAlphabet } = require('nanoid');
-const readline = require('readline');
-const shortUUID = require('short-uuid');
+import fs from 'fs';
+import path from 'path';
+
+import dayjs from 'dayjs';
+import { nanoid, customAlphabet } from 'nanoid';
+import readline from 'readline';
+import shortUUID from 'short-uuid';
 
 const uuidTranslator = shortUUID();
 
 // https://timber.io/blog/creating-a-real-world-cli-app-with-node/
 
-function generateId(number, type, length, alphabet) {
+export function generateId(number, type, length, alphabet) {
 	let results = [];
 	for (let i = 0; i < number; i++) {
 		if ('nano' === type)
@@ -60,7 +61,7 @@ function question(q, acceptable) {
 	});
 }
 
-async function updateVersion(args) {
+export async function updateVersion(args) {
 	args = args ? args : {};
 
 	let packagePath = !_isEmpty(args.packagePath) ? args.packagePath : process.cwd();
@@ -126,9 +127,4 @@ function _isEmpty(value) {
 		return true;
 	
 	return false;
-}
-
-module.exports = {
-	generateId,
-	updateVersion
 }

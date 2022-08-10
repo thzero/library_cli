@@ -1,5 +1,6 @@
 {
   "name": "@thzero/library_cli",
+  "type": "module",
   "version": "0.15.13",
   "version_major": 0,
   "version_minor": 15,
