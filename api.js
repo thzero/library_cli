@@ -67,7 +67,9 @@ export async function updateVersion(args) {
 	let packagePath = !_isEmpty(args.packagePath) ? args.packagePath : process.cwd();
 	if (!packagePath.includes('package.json'))
 		packagePath = path.join(packagePath, 'package.json');
-	const packageJson = require(packagePath);
+	// const packageJson = require(packagePath);
+	let packageJson = await fs.promises.readFile(packagePath);
+	packageJson = JSON.parse(packageJson);
 	// console.log(packageJson);
 
 	if (!args.major)

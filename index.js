@@ -1,12 +1,19 @@
 #!/usr/bin/env node
+import fs from 'fs';
+
 import minimist from 'minimist';
 
-import { generateId, updateVersion } from './api';
+import { generateId, updateVersion } from './api.js';
 
-const { version } = require('./package.json');
-const appVersion = version;
+// const { version } = require('./package.json');
+// const appVersion = version;
 
 (async () => {
+	let appVersion = '';
+	const packageJson = await fs.promises.readFile('./package.json');
+	const json = JSON.parse(packageJson);
+	appVersion = json.version;
+
 	const menus = {
 		default: `
 library-cli <options>
