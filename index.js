@@ -3,7 +3,7 @@ import fs from 'fs';
 
 import minimist from 'minimist';
 
-import { generateId, updateVersion } from '@thzero/library_cli/api';
+import { generateId, updateVersion } from './api.js';
 
 // const { version } = require('./package.json');
 // const appVersion = version;
