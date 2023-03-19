@@ -30,7 +30,7 @@ library-cli <options>
   --number, --n <value> :: the number of ids to generate
   --long :: generates a long uuid
   --nano :: generates a nanoid
-  --length, --l :: length of a nanoid
+  --length, --l :: length of a nanoid, default is 22
   --alphabet, --a :: alphabet for a nanoid
 
 --updateversion :: updates the version
