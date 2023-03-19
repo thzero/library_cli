@@ -17,9 +17,9 @@ export function generateId(number, type, length, alphabet) {
 		if ('nano' === type)
 			results.push(generateNanoId(length, alphabet));
 		else if ('short' === type)
-				results.push(generateLongId());
-		else
 			results.push(generateShortId());
+		else
+			results.push(generateLongId());
 	}
 	return results;
 }
