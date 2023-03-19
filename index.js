@@ -66,8 +66,6 @@ library-cli version '${appVersion}'`;
 	let length = null;
 	if (args.length || args.l)
 		length = args.length || args.l;
-	if (!length)
-		length = 22;
 	let alphabet = null;
 	if (args.alphabet || args.a)
 		alphabet = args.alphabet || args.a;
