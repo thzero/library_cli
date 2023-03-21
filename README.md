@@ -30,9 +30,11 @@ library-cli <options>
   --number, --n <value> :: the number of ids to generate
   --long :: generates a long UUID v4
   --nano :: generates a nanoid
+  --nanoshort, --ns :: generates a nanoid with length of 16
   --short :: generates a short UUID v4
   --length, --l :: length of a nanoid, default is 21
-  --alphabet, --a :: alphabet for a nanoid
+  --alphanum, --a :: custom alphanumeric only alphabet for nanoid
+  --custom, --c :: custom alphabet for a nanoid
   --number, --n :: number of ids to generate, max 100
 
 --updateversion :: updates the version

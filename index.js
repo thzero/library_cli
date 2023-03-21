@@ -26,9 +26,12 @@ library-cli <options>
 		--number, --n <value> :: the number of ids to generate
 		--long :: generates a long UUID v4
 		--nano :: generates a nanoid
+		--nanoshort, --ns :: generates a nanoid with length of 16
 		--short :: generates a short UUID v4
 		--length, --l :: length of a nanoid
-		--alphabet, --a :: alphabet for a nanoid
+		--alphanum, --a :: custom alphanumeric only alphabet for nanoid
+		--custom, --c :: custom alphabet for a nanoid
+		--default, --s :: default alphabet for nanoid
 		--number, --n :: number of ids to generate, max 100
 
 	--updateversion :: updates the version
@@ -60,25 +63,33 @@ library-cli version '${appVersion}'`;
 	if (args.number || args.n)
 		number = args.number || args.n;
 
+	let length = null;
+
 	let type = 'long';
 	if (args.long )
 		type = 'long';
 	if (args.nano)
 		type = 'nano';
+	if (args.nanoshort || args.ns) {
+		type = 'nano';
+		length = 16;
+	}
 	if (args.short )
 		type = 'short';
 
 	// nanoid args
-	let length = null;
 	if (args.length || args.l)
 		length = args.length || args.l;
-	let alphabet = null;
-	if (args.alphabet || args.a)
-		alphabet = args.alphabet || args.a;
+		
+	let custom = null;
+	if (args.custom || args.c)
+		custom = args.custom || args.c;
+	if (args.alphanum || args.a)
+		custom = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 	switch (cmd) {
 		case 'generate':
-			console.log(generateId(number, type, length, alphabet).join('\n'));
+			console.log(generateId(number, type, length, custom).join('\n'));
 			break;
 
 		case 'updateversion':

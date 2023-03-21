@@ -25,11 +25,15 @@ export function generateId(number, type, length, alphabet) {
 }
 
 function generateNanoId(length, alphabet) {
+	let temp = nanoid;
 	if (length && alphabet)
-		return customAlphabet(alphabet, id);
+		temp = customAlphabet(alphabet, length);
+	if (alphabet)
+		temp = customAlphabet(alphabet);
+	
 	if (length)
-		return nanoid(length);
-	return nanoid();
+		return temp(length);
+	return temp();
 }
 
 function generateLongId() {
