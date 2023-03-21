@@ -26,12 +26,14 @@ library-cli <options>
 
 --version, --v :: cli version
 
---generate :: generates a UUIDs, either in short (default) or long format
+--generate :: generates a unique ids, default is a UUID v4
   --number, --n <value> :: the number of ids to generate
-  --long :: generates a long uuid
+  --long :: generates a long UUID v4
   --nano :: generates a nanoid
+  --short :: generates a short UUID v4
   --length, --l :: length of a nanoid, default is 21
   --alphabet, --a :: alphabet for a nanoid
+  --number, --n :: number of ids to generate, max 100
 
 --updateversion :: updates the version
   --major, --ma <major> :: sets the major version, defaults to the current value or 0
