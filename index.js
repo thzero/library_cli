@@ -65,6 +65,10 @@ library-cli version '${appVersion}'`;
 		type = 'long';
 	if (args.nano)
 		type = 'nano';
+	if (args.short )
+		type = 'short';
+
+	// nanoid args
 	let length = null;
 	if (args.length || args.l)
 		length = args.length || args.l;
