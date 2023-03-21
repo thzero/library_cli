@@ -22,12 +22,14 @@ library-cli <options>
 
 	--version, --v :: cli version
 
-	--generate :: generates a UUIDnpm s, either in short (default) or long format
+	--generate :: generates a unique ids, default is a UUID v4
 		--number, --n <value> :: the number of ids to generate
-		--long :: generates a long uuid
+		--long :: generates a long UUID v4
 		--nano :: generates a nanoid
+		--short :: generates a short UUID v4
 		--length, --l :: length of a nanoid
 		--alphabet, --a :: alphabet for a nanoid
+		--number, --n :: number of ids to generate, max 100
 
 	--updateversion :: updates the version
 		--major, --ma <major> :: sets the major version, defaults to the current value or 0
@@ -58,11 +60,15 @@ library-cli version '${appVersion}'`;
 	if (args.number || args.n)
 		number = args.number || args.n;
 
-	let type = 'short';
+	let type = 'long';
 	if (args.long )
 		type = 'long';
 	if (args.nano)
 		type = 'nano';
+	if (args.short )
+		type = 'short';
+
+	// nanoid args
 	let length = null;
 	if (args.length || args.l)
 		length = args.length || args.l;
