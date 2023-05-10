@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { nanoid, customAlphabet } from 'nanoid';
 import readline from 'readline';
 import shortUUID from 'short-uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const uuidTranslator = shortUUID();
 
@@ -37,7 +38,7 @@ function generateNanoId(length, alphabet) {
 }
 
 function generateLongId() {
-	return shortUUID.uuid();
+	return uuidv4();
 }
 
 function generateShortId() {
