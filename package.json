@@ -1,11 +1,11 @@
 {
   "name": "@thzero/library_cli",
   "type": "module",
-  "version": "0.18.7",
+  "version": "0.18.8",
   "version_major": 0,
   "version_minor": 18,
-  "version_patch": 7,
-  "version_date": "10/31/2024",
+  "version_patch": 8,
+  "version_date": "12/16/2024",
   "description": "A cli tool for the opinonated libraries.",
   "author": "thZero",
   "license": "MIT",
@@ -34,8 +34,8 @@
     "dayjs-plugin-utc": "^0.1.2",
     "esm": "^3.2.25",
     "minimist": "^1.2.8",
-    "nanoid": "^5.0.8",
+    "nanoid": "^5.0.9",
     "short-uuid": "^5.2.0",
-    "uuid": "^11.0.2"
+    "uuid": "^11.0.3"
   }
 }
