@@ -1,11 +1,11 @@
 {
   "name": "@thzero/library_cli",
   "type": "module",
-  "version": "0.18.17",
+  "version": "0.18.18",
   "version_major": 0,
   "version_minor": 18,
-  "version_patch": 17,
-  "version_date": "11/12/2025",
+  "version_patch": 18,
+  "version_date": "12/10/2025",
   "description": "A cli tool for the opinonated libraries.",
   "author": "thZero",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "esm": "^3.2.25",
     "minimist": "^1.2.8",
     "nanoid": "^5.1.6",
-    "short-uuid": "^5.2.0",
+    "short-uuid": "^6.0.3",
     "uuid": "^13.0.0"
   }
 }
