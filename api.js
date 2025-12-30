@@ -5,10 +5,8 @@ import path from 'path';
 import dayjs from 'dayjs';
 import { nanoid, customAlphabet } from 'nanoid';
 import readline from 'readline';
-import shortUUID from 'short-uuid';
+import { generate } from 'short-uuid';
 import { v4 as uuidv4 } from 'uuid';
-
-const uuidTranslator = shortUUID();
 
 // https://timber.io/blog/creating-a-real-world-cli-app-with-node/
 
@@ -42,7 +40,7 @@ function generateLongId() {
 }
 
 function generateShortId() {
-	return uuidTranslator.new();
+	return generate();
 }
 
 function question(q, acceptable) {
