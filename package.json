@@ -1,11 +1,11 @@
 {
   "name": "@thzero/library_cli",
   "type": "module",
-  "version": "0.18.24",
+  "version": "0.18.25",
   "version_major": 0,
   "version_minor": 18,
-  "version_patch": 24,
-  "version_date": "05/10/2026",
+  "version_patch": 25,
+  "version_date": "05/21/2026",
   "description": "A cli tool for the opinonated libraries.",
   "author": "thZero",
   "author_url": "https://www.thzero.com",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/thzero/library_cli#readme",
   "engines": {
-    "node": ">=12.8.3"
+    "node": ">=22"
   },
   "bin": {
     "library-cli": "./index.js"
