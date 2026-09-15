@@ -25,9 +25,14 @@ jobs:
     - name: Input
       run: |
         echo label: ${{ github.event.inputs.label }}
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
       with:
         ref: dev
+    - name: Initialize Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v7
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: 'https://registry.npmjs.org'
     - name: Node Dependencies for CLI
       run: |
         npm install -g @thzero/library_cli
@@ -37,11 +42,6 @@ jobs:
     - name: Package Output
       run: |
         cat package.json
-    - name: Initialize Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://registry.npmjs.org'
     - run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
